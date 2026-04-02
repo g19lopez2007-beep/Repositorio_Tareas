@@ -118,3 +118,27 @@ def contarConsonantes(pNum):
             contador+=1
         i+=1
     return f'El numero de consonantes son: {contador}'
+
+def guardarResultado(texto):
+    with open('resultados.txt', 'a') as archivo:
+        archivo.write(texto + '\n')
+    return 'Resultado guardado.'
+
+def mostrarResultados():
+    try:
+        with open('resultados.txt', 'r') as archivo:
+            contenido = archivo.read()
+            if contenido.strip() == "":
+                return 'No hay resultados guardados todavía.'
+            else:
+                return f'\n--- Resultados anteriores ---\n{contenido}'
+    except FileNotFoundError:
+        return 'No hay resultados guardados todavía.'
+
+def borrarResultados():
+    try:
+        with open('resultados.txt', 'w') as archivo:
+            archivo.write("") 
+        return 'Todos los resultados han sido borrados.'
+    except FileNotFoundError:
+        return 'No hay archivo de resultados para borrar.'

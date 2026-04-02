@@ -6,7 +6,7 @@ aparte, tiene los print para poder ver los resultados.
 
 def contarVocales(pNum):
     from Practica_adicional import contarVocalesAux
-    if not contarVocalesAux(pNum):
+    if contarVocalesAux(pNum)!=True:
         return(contarVocalesAux(pNum))
     contador=0
     vocales="aeiou"

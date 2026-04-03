@@ -103,7 +103,7 @@ def contarTresLetras(pNum):
             palabra=palabra+", "
             separacion+=1
         i+=1
-    return f'La palabra es: {palabra} y contine esta cantidad de palabras: {separacion} y un total de letras de: {letra}'
+    return f'La palabra es: [{palabra}] y contine esta cantidad de palabras: {separacion} y un total de letras de: {letra}'
 
 def contarConsonantes(pNum):
     from Practica_adicional import contarConsonantesAux
@@ -121,17 +121,27 @@ def contarConsonantes(pNum):
 
 def guardarResultado(texto):
     with open('resultados.txt', 'a') as archivo:
-        archivo.write(texto + '\n')
+        archivo.write(texto + '  \n')
     return 'Resultado guardado.'
 
 def mostrarResultados():
     try:
         with open('resultados.txt', 'r') as archivo:
             contenido = archivo.read()
-            if contenido.strip() == "":
-                return 'No hay resultados guardados todavía.'
-            else:
-                return f'\n--- Resultados anteriores ---\n{contenido}'
+        i = 0
+        resultado = ""
+        if contenido.strip() == "":
+            return 'No hay resultados guardados todavía.'
+        else:
+            while i<len(contenido):
+                if contenido[i]!=' ':
+                    resultado=resultado+contenido[i]
+                if contenido[i]==' ' and contenido[i+1]==' ':
+                    resultado=resultado+', '
+                if contenido[i]==' ':
+                    resultado=resultado+" "
+                i+=1
+            return f"--- Resultados guardados ---<br>{resultado}"
     except FileNotFoundError:
         return 'No hay resultados guardados todavía.'
 
